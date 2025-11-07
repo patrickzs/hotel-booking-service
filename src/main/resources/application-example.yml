@@ -1,0 +1,31 @@
+spring:
+  config:
+    activate:
+      on-profile: example
+  devtools:
+    add-properties: true
+  datasource:
+    url: "jdbc:mysql://localhost:3306/hotel_booking_service"
+    username: YOUR_DATABASE_USERNAME
+    password: YOUR_DATABASE_PASSWORD
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate :
+        format_sql: true
+
+---
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+---
+
+jwt:
+  secretKey: YOUR_SECURE_JWT_SECRET_KEY_HERE
