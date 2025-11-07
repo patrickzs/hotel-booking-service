@@ -1,0 +1,27 @@
+# Spring Boot configuration files
+application.properties
+application-dev.properties
+application-prod.properties
+application-test.properties
+*.yml
+
+# Log files
+*.log
+
+# Maven build directory
+/target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse.gitignore
+.classpath
+.project
+.settings/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
