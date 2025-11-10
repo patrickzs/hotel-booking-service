@@ -1,7 +1,6 @@
+server:
+  port: 8080
 spring:
-  config:
-    activate:
-      on-profile: example
   devtools:
     add-properties: true
   datasource:
