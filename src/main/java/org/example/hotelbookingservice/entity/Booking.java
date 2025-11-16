@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.hotelbookingservice.enums.BookingStatus;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
@@ -49,7 +50,7 @@ public class Booking {
     @Size(max = 255)
     @NotNull
     @Column(name = "status", nullable = false)
-    private String status;
+    private BookingStatus status;
 
     @Size(max = 255)
     @Column(name = "specialRequire")

@@ -6,7 +6,7 @@ import org.example.hotelbookingservice.dto.request.Response;
 import org.example.hotelbookingservice.dto.response.UserDTO;
 import org.example.hotelbookingservice.entity.User;
 
-public interface UserService {
+public interface IUserService {
 
     Response registerUser(RegistrationRequest registrationRequest);
     Response loginUser(LoginRequest loginRequest);

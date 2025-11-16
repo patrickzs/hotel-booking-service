@@ -17,7 +17,7 @@ import org.example.hotelbookingservice.repository.RoleRepository;
 import org.example.hotelbookingservice.repository.UserRepository;
 import org.example.hotelbookingservice.repository.UserroleRepository;
 import org.example.hotelbookingservice.security.JwtUtils;
-import org.example.hotelbookingservice.services.UserService;
+import org.example.hotelbookingservice.services.IUserService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.data.domain.Sort;
@@ -31,7 +31,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
 
 
     private final UserRepository userRepository;
