@@ -79,5 +79,25 @@ public class UserController {
                 .build();
     }
 
+    @PutMapping("/{userId}/lock")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ApiResponse<Void> lockUser(@PathVariable Integer userId){
+        userService.lockUser(userId);
+        return ApiResponse.<Void>builder()
+                .status(200)
+                .message("User locked successfully")
+                .build();
+    }
+
+    @PutMapping("/{userId}/unlock")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ApiResponse<Void> unlockUser(@PathVariable Integer userId){
+        userService.unlockUser(userId);
+        return ApiResponse.<Void>builder()
+                .status(200)
+                .message("User unlocked successfully")
+                .build();
+    }
+
 
 }
