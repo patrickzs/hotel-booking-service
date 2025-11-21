@@ -24,18 +24,20 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
                 )
                 AND (:roomType IS NULL OR r.type = :roomType)
             """)
-    List<Room> findAvailableRooms(@Param("checkinDate") LocalDate checkinDate, @Param("checkoutDate") LocalDate checkoutDate, @Param("roomType") RoomType roomType);
+    List<Room> findAvailableRooms(@Param("checkInDate") LocalDate checkinDate, @Param("checkOutDate") LocalDate checkoutDate, @Param("roomType") RoomType roomType);
 
 
     @Query("""
                SELECT r FROM Room r
-                 WHERE LOWER(r.name) LIKE LOWER(CONCAT('%', :searchParam, '%'))
-                    OR LOWER(r.type) LIKE LOWER(CONCAT('%', :searchParam, '%'))
-                    OR CAST(r.price AS string) LIKE %:searchParam%
-                    OR CAST(r.capacity AS string) LIKE %:searchParam%
-                    OR LOWER(r.description) LIKE LOWER(CONCAT('%', :searchParam, '%'))
+               WHERE LOWER(r.name) LIKE LOWER(CONCAT('%', :searchParam, '%'))
+                  OR LOWER(CAST(r.type AS string)) LIKE LOWER(CONCAT('%', :searchParam, '%')) 
+                  OR CAST(r.price AS string) LIKE CONCAT('%', :searchParam, '%')
+                  OR CAST(r.capacity AS string) LIKE CONCAT('%', :searchParam, '%')
+                  OR LOWER(r.description) LIKE LOWER(CONCAT('%', :searchParam, '%'))
             """)
     List<Room> searchRooms(@Param("searchParam") String searchParam);
 
+
+    boolean existsByRoomNumber(Integer roomNumber);
 
 }

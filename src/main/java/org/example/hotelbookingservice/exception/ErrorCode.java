@@ -16,11 +16,15 @@ public enum ErrorCode {
     UNAUTHORIZED(1007,"You do not have permission",HttpStatus.FORBIDDEN),
     INVALID_DOB(1008,"You age must be at least {min}",HttpStatus.BAD_REQUEST),
     INVALID_BOOKING_STATE_AND_DATE_EXCEPTION(1009,"dfd",HttpStatus.BAD_REQUEST),
-    INVALID_CREDENTIAL_EXCEPTION(10010,"Invalid credentials",HttpStatus.BAD_REQUEST),
+    INVALID_CREDENTIAL_EXCEPTION(10010,"Invalid credentials",HttpStatus.UNAUTHORIZED),
     NAME_VALUE_REQUIRED_EXCEPTION(10011,"Name value required",HttpStatus.BAD_REQUEST),
-    INVALID_PASSWORD_EXCEPTION(10010,"Password doesn't match",HttpStatus.BAD_REQUEST),
-    NOT_FOUND_EXCEPTION(10012,"Not found",HttpStatus.NOT_FOUND),
-    NOT_FOUND_EMAIL_EXCEPTION(10013,"Not found email",HttpStatus.NOT_FOUND)
+    INVALID_PASSWORD_EXCEPTION(10012,"Password doesn't match",HttpStatus.UNAUTHORIZED),
+    NOT_FOUND_EXCEPTION(10013,"Not found",HttpStatus.NOT_FOUND),
+    NOT_FOUND_EMAIL_EXCEPTION(10014,"Not found email",HttpStatus.NOT_FOUND),
+    NOT_FOUND_ROOM(10015,"Not found Room",HttpStatus.NOT_FOUND),
+    ROOM_ALREADY_EXISTS(10016,"Room already exists",HttpStatus.NOT_FOUND),
+    OLD_PASSWORD_INCORRECT(10017, "Old password is not correct", HttpStatus.BAD_REQUEST),
+    PASSWORD_CHANGE_INVALID(10018, "New password cannot be the same as old password", HttpStatus.BAD_REQUEST)
     ;
 
 

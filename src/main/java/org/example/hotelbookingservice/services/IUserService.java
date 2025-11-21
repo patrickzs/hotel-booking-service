@@ -1,19 +1,24 @@
 package org.example.hotelbookingservice.services;
 
-import org.example.hotelbookingservice.dto.request.LoginRequest;
-import org.example.hotelbookingservice.dto.request.RegistrationRequest;
-import org.example.hotelbookingservice.dto.request.Response;
-import org.example.hotelbookingservice.dto.response.UserDTO;
+import org.example.hotelbookingservice.dto.request.auth.LoginRequest;
+import org.example.hotelbookingservice.dto.request.auth.RegisterRequest;
+import org.example.hotelbookingservice.dto.request.user.ChangePasswordRequest;
+import org.example.hotelbookingservice.dto.request.user.UserUpdateRequest;
+import org.example.hotelbookingservice.dto.response.LoginResponse;
+import org.example.hotelbookingservice.dto.response.UserResponse;
 import org.example.hotelbookingservice.entity.User;
+
+import java.util.List;
 
 public interface IUserService {
 
-    Response registerUser(RegistrationRequest registrationRequest);
-    Response loginUser(LoginRequest loginRequest);
-    Response getAllUsers();
-    Response getOwnAccountDetails();
+    UserResponse registerUser(RegisterRequest registrationRequest);
+    LoginResponse loginUser(LoginRequest loginRequest);
+    List<UserResponse> getAllUsers();
+    UserResponse getOwnAccountDetails();
     User getCurrentLoggedInUser();
-    Response updateOwnAccount(UserDTO userDTO);
-    Response deleteOwnAccount();
-    Response getMyBookingHistory();
+    UserResponse updateOwnAccount(UserUpdateRequest request);
+    void deleteOwnAccount();
+    List<org.example.hotelbookingservice.dto.response.BookingResponse> getMyBookingHistory();
+    void changePassword(ChangePasswordRequest request);
 }

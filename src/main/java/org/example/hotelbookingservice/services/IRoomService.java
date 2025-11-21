@@ -1,7 +1,7 @@
 package org.example.hotelbookingservice.services;
 
-import org.example.hotelbookingservice.dto.request.Response;
-import org.example.hotelbookingservice.dto.response.RoomDTO;
+import org.example.hotelbookingservice.dto.request.room.RoomCreateRequest;
+import org.example.hotelbookingservice.dto.response.RoomResponse;
 import org.example.hotelbookingservice.enums.RoomType;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,12 +9,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface IRoomService {
-    Response addRoom(RoomDTO roomDTO, MultipartFile imageFile);
-    Response updateRoom(RoomDTO roomDTO, MultipartFile imageFile);
-    Response getAllRooms();
-    Response getRoomById(Long id);
-    Response deleteRoom(Long id);
-    Response getAvailableRooms(LocalDate checkInDate, LocalDate checkOutDate, RoomType roomType);
+    RoomResponse addRoom(RoomCreateRequest roomCreateRequest, MultipartFile imageFile);
+    RoomResponse updateRoom(RoomCreateRequest roomCreateRequest, MultipartFile imageFile);
+    List<RoomResponse> getAllRooms();
+    RoomResponse getRoomById(Integer id);
+    void deleteRoom (Integer id);
+    List<RoomResponse> getAvailableRooms(LocalDate checkInDate, LocalDate checkOutDate, RoomType roomType);
     List<RoomType> getAllRoomTypes();
-    Response searchRoom(String input);
+    List<RoomResponse> searchRoom(String input);
 }

@@ -47,9 +47,9 @@ public class Booking {
     @Column(name = "cancelReason")
     private String cancelReason;
 
-    @Size(max = 255)
     @NotNull
     @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
     private BookingStatus status;
 
     @Size(max = 255)
@@ -77,10 +77,10 @@ public class Booking {
     private User user;
 
 
-    @OneToMany(mappedBy = "booking")
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Bookingroom> bookingrooms = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "booking")
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Payment> payments = new LinkedHashSet<>();
 
 

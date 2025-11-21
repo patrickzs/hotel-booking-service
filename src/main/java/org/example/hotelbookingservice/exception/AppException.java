@@ -1,8 +1,10 @@
 package org.example.hotelbookingservice.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class AppException extends RuntimeException {
     private ErrorCode errorCode;
 
