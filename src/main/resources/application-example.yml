@@ -28,7 +28,7 @@ springdoc:
 ---
 
 jwt:
-  secretKey: YOUR_SECURE_JWT_SECRET_KEY_HERE
+  secretKey: YOUR_SECURE_JWT_SECRET_KEY_HERgitE
 
 ---
 cloudinary:

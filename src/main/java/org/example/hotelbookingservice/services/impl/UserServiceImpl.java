@@ -93,6 +93,10 @@ public class UserServiceImpl implements IUserService {
         User user = userRepository.findByEmail(loginRequest.getEmail())
                 .orElseThrow(()-> new AppException(ErrorCode.NOT_FOUND_EXCEPTION));
 
+        if (Boolean.FALSE.equals(user.getActivate())){
+            throw new AppException(ErrorCode.ACCOUNT_LOCKED);
+        }
+
         if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
             throw new AppException(ErrorCode.INVALID_PASSWORD_EXCEPTION);
         }
@@ -206,6 +210,24 @@ public class UserServiceImpl implements IUserService {
 
         //Encrypt new password and save to DB
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
+    }
+
+    @Override
+    public void lockUser(Integer userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(()-> new AppException(ErrorCode.NOT_FOUND_EXCEPTION));
+
+        user.setActivate(false);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void unlockUser(Integer userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(()-> new AppException(ErrorCode.USER_NOT_EXISTED));
+
+        user.setActivate(true);
         userRepository.save(user);
     }
 }

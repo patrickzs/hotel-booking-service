@@ -24,7 +24,8 @@ public enum ErrorCode {
     NOT_FOUND_ROOM(10015,"Not found Room",HttpStatus.NOT_FOUND),
     ROOM_ALREADY_EXISTS(10016,"Room already exists",HttpStatus.NOT_FOUND),
     OLD_PASSWORD_INCORRECT(10017, "Old password is not correct", HttpStatus.BAD_REQUEST),
-    PASSWORD_CHANGE_INVALID(10018, "New password cannot be the same as old password", HttpStatus.BAD_REQUEST)
+    PASSWORD_CHANGE_INVALID(10018, "New password cannot be the same as old password", HttpStatus.BAD_REQUEST),
+    ACCOUNT_LOCKED(10019, "Account has been locked by Admin", HttpStatus.FORBIDDEN)
     ;
 
 

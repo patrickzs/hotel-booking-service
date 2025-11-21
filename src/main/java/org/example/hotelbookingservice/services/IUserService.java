@@ -21,4 +21,6 @@ public interface IUserService {
     void deleteOwnAccount();
     List<org.example.hotelbookingservice.dto.response.BookingResponse> getMyBookingHistory();
     void changePassword(ChangePasswordRequest request);
+    void lockUser(Integer userId);
+    void unlockUser(Integer userId);
 }
