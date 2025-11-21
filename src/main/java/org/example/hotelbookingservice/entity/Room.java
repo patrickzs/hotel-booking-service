@@ -6,7 +6,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.hotelbookingservice.enums.RoomType;
 
+import java.math.BigDecimal;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -20,6 +22,10 @@ public class Room {
     @Column(name = "Id", nullable = false)
     private Integer id;
 
+    @Min(value = 1, message = "Room Number must be at least 1")
+    @Column(unique = true)
+    private Integer roomNumber;
+
     @Size(max = 255)
     @NotNull
     @Column(name = "name", nullable = false)
@@ -31,17 +37,18 @@ public class Room {
 
     @NotNull
     @Column(name = "price", nullable = false)
-    private Float price;
+    private BigDecimal price;
 
     @Size(max = 255)
     @NotNull
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Size(max = 255)
+
     @NotNull
     @Column(name = "type", nullable = false)
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private RoomType type;
 
     @NotNull
     @Column(name = "amount", nullable = false)
@@ -52,13 +59,13 @@ public class Room {
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Bookingroom> bookingrooms = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Image> images = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Roomamenity> roomAmenities = new LinkedHashSet<>();
 
 }

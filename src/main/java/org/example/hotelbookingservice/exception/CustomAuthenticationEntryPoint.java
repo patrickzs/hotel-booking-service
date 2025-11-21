@@ -5,7 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.example.hotelbookingservice.dto.request.Response;
+import org.example.hotelbookingservice.dto.common.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -25,13 +25,17 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
                          AuthenticationException authException)
             throws IOException, ServletException {
 
-        Response errorResponse = Response.builder()
-                .status(HttpStatus.UNAUTHORIZED.value()) //401 invid token
+        // Create ApiResponse with error message
+        ApiResponse<Void> errorResponse = ApiResponse.<Void>builder()
+                .status(HttpStatus.UNAUTHORIZED.value()) // 401
                 .message(authException.getMessage())
                 .build();
 
+        // Set up JSON return header
         response.setContentType("application/json");
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
+
+        // Write ApiResponse object to JSON string in response body
         response.getWriter().write(objectMapper.writeValueAsString(errorResponse));
 
     }

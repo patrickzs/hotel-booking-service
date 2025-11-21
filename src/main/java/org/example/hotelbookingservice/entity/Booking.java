@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.hotelbookingservice.enums.BookingStatus;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
@@ -46,10 +47,10 @@ public class Booking {
     @Column(name = "cancelReason")
     private String cancelReason;
 
-    @Size(max = 255)
     @NotNull
     @Column(name = "status", nullable = false)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private BookingStatus status;
 
     @Size(max = 255)
     @Column(name = "specialRequire")
@@ -76,10 +77,10 @@ public class Booking {
     private User user;
 
 
-    @OneToMany(mappedBy = "booking")
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Bookingroom> bookingrooms = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "booking")
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Payment> payments = new LinkedHashSet<>();
 
 

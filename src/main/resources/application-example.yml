@@ -28,3 +28,9 @@ springdoc:
 
 jwt:
   secretKey: YOUR_SECURE_JWT_SECRET_KEY_HERE
+
+---
+cloudinary:
+  cloud-name: Cloud-name
+  api-key: api-key
+  api-secret: key-secret

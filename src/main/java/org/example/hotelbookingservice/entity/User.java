@@ -27,8 +27,8 @@ public class User {
 
     @Size(max = 255)
     @NotNull
-    @Column(name = "fName", nullable = false)
-    private String fName;
+    @Column(name = "fullName", nullable = false)
+    private String fullName;
 
     @Size(max = 255)
     @NotNull
@@ -51,6 +51,7 @@ public class User {
 
     @NotNull
     @Column(name = "activate", nullable = false)
+    @Builder.Default
     private Boolean activate = false;
 
 //    @Enumerated(EnumType.STRING)
@@ -59,15 +60,19 @@ public class User {
     private final LocalDateTime createdAt = LocalDateTime.now();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @Builder.Default
     private Set<Booking> bookings = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @Builder.Default
     private Set<Hotel> hotels = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @Builder.Default
     private Set<Review> reviews = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @Builder.Default
     private Set<Userrole> userRoles = new LinkedHashSet<>();
 
 
