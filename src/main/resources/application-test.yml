@@ -1,0 +1,24 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+  devtools:
+    add-properties: true
+  datasource:
+    url: ${TEST_DB_URL:jdbc:mysql://localhost:3306/hotel_booking_service_test}
+    username: ${TEST_DB_USERNAME:root}
+    password: ${TEST_DB_PASSWORD:123456789}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate :
+        format_sql: true
+
+
+---
+
+jwt:
+  secretKey: ${JWT_SECRET_KEY:test-secret-key-only-for-testing-purposes-123}
